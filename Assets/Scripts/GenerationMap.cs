@@ -5,6 +5,7 @@ public class GenerationMap : MonoBehaviour
 {
 
     public EntityOnMap entityes;
+    public float POVEntities = 50f;
     private int generatedObjectCount = 0;
     private int entityCount;
     public float minRange, maxRange; //радиус спавна
@@ -52,7 +53,11 @@ public class GenerationMap : MonoBehaviour
         cell.AddComponent<EntityCollisionHandler>();
         cell.tag = "Entity";
         cell.AddComponent<Rigidbody>();
-        
+       // SphereCollider collider = cell.AddComponent<SphereCollider>();
+       // collider.isTrigger = true;
+       // collider.radius = POVEntities;
+
+
     }
 
     
