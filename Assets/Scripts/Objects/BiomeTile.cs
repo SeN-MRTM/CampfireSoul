@@ -5,9 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using UnityEngine;
 
-namespace Assets.Scripts.Objects
-{
-    [Serializable]
+ [Serializable]
     public class BiomeTile
     {
 
@@ -20,4 +18,4 @@ namespace Assets.Scripts.Objects
             this.biomMaterial = biomMaterial;
         }
     }
-}
+

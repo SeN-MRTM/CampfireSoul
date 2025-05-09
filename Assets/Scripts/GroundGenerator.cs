@@ -1,8 +1,8 @@
-using Assets.Scripts.Objects;
+
 using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
-
+[DefaultExecutionOrder(11)]
 public class GroundGenerator : MonoBehaviour
 {
 
@@ -16,35 +16,35 @@ public class GroundGenerator : MonoBehaviour
     public Material spawnBiomMaterial;
     public Material waterBiomMaterial;
     public Material[] biomesMaterials;
-    
+
 
     private BiomeTile[,] maze;
     private List<Material> usedMaterial = new List<Material>();
     private List<RectInt> rooms = new List<RectInt>();
     private int globalX, globalY;
 
-    void Start()
+     void Start()
     {
         globalX = width / 2;
         globalY = height / 2;
         GenerateDungeon();
     }
 
-    void GenerateDungeon()
+     void GenerateDungeon()
     {
         maze = new BiomeTile[width * 2 + 1, height * 2 + 1];
-        for (int x  = 0; x < width * 2 + 1; x++)
+        for (int x = 0; x < width * 2 + 1; x++)
         {
-            for (int y = 0; y < height * 2 + 1; y++) 
+            for (int y = 0; y < height * 2 + 1; y++)
             {
-                maze[x, y] = new BiomeTile(true, waterBiomMaterial);
+                maze[x, y] = new BiomeTile(false, waterBiomMaterial);
             }
         }
 
 
         // 1. Генерация комнат
 
-        
+
         for (int i = 0; i < roomCount; i++)
         {
             int _x = Random.Range(0, width - maxRoomSize - 1);
@@ -71,7 +71,7 @@ public class GroundGenerator : MonoBehaviour
     {
         int roomWidth = Random.Range(minRoomSize, maxRoomSize);
         int roomHeight = Random.Range(minRoomSize, maxRoomSize);
-        
+
 
         RectInt newRoom = new RectInt(_x, _y, roomWidth, roomHeight);
 
@@ -153,7 +153,31 @@ public class GroundGenerator : MonoBehaviour
                     continue;
                 if (maze[x, y].isFloor)
                 {
+                    Biome thisBiome = null;
+                    foreach (Biome biome in TempData.biomes)
+                    {
+                        if (biome != null)
+                        {
+                            if (biome.NameBiome == maze[x, y].biomMaterial.name)
+                            {
+
+                                thisBiome = biome;
+                            }
+                        }
+                    }
+                    if (thisBiome != null)
+                    {
+                        thisBiome.TileCoords.Add(pos);
+                    }
+                    else
+                    {
+                        thisBiome = new Biome(maze[x, y].biomMaterial.name);
+                        TempData.biomes.Add(thisBiome);
+                        thisBiome.TileCoords.Add(pos);
+                    }
+
                     var floorTile = Instantiate(floorPrefab, pos, Quaternion.identity);
+                    floorTile.tag = "Ground";
                     Renderer renderer = floorTile.GetComponent<Renderer>();
                     renderer.material = maze[x, y].biomMaterial;
                 }
