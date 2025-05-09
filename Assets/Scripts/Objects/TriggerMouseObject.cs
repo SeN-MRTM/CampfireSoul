@@ -2,29 +2,28 @@ using System;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
+using System.Collections;
+using System.Collections.Generic;
 
-[DefaultExecutionOrder(100)]
 public class TriggerMouseObject : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 {
-
     GameObject canvas;
-    [SerializeField] private Sprite _icon;
-    private UnityEngine.UI.Image _currentIcon;
+    [SerializeField] public Sprite _iconObject;
+    GameObject _changeIconHPBar;
     void Start()
     {
         canvas = GameObject.FindWithTag("HPObject");
         //canvas.SetActive(false);
         canvas.transform.position = new Vector3(-306,1048);
-        _icon = GetComponent<Sprite>();
-
+        _changeIconHPBar = GameObject.FindWithTag("IconObject");
     }
 
     public void OnPointerEnter(PointerEventData _data)
     {
         GetComponent<MeshRenderer>().material.color = Color.yellow;
         //canvas.SetActive(true);
-        _currentIcon.sprite = _icon;
-        canvas.transform.position = new Vector3(117, 1048); 
+        canvas.transform.position = new Vector3(117, 1048);
+        _changeIconHPBar.GetComponent<Image>().sprite = _iconObject;
     }
     public void OnPointerExit(PointerEventData _data)
     {
