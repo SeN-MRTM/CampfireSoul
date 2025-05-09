@@ -5,9 +5,10 @@ using UnityEngine;
 [System.Serializable]
 public class EntityWithInt
 {
-    public GameObject entity;
-    public int minValue;
-    public int maxValue;
+    public GameObject Entity;
+    public Material Biome;
+    public int MinValue;
+    public int MaxValue;
     public int count { get; set; }
 
   

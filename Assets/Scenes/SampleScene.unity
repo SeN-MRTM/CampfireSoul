@@ -135,6 +135,7 @@ GameObject:
   - component: {fileID: 279241543}
   - component: {fileID: 279241544}
   - component: {fileID: 279241545}
+  - component: {fileID: 279241546}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -296,6 +297,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: bf2e15a7faf1c7745911917c0d122885, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &279241546
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 279241537}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2d9f3275fba9a364da78a5c6670a07cb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &330585543
@@ -591,8 +604,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 540914339}
-  - component: {fileID: 540914338}
   - component: {fileID: 540914340}
+  - component: {fileID: 540914338}
   m_Layer: 0
   m_Name: GenerationMap
   m_TagString: Untagged
@@ -615,8 +628,8 @@ MonoBehaviour:
   entityes: {fileID: 2131115690}
   minRange: -100
   maxRange: 100
-  x: 100
-  z: 100
+  x: 250
+  z: 250
 --- !u!4 &540914339
 Transform:
   m_ObjectHideFlags: 0
@@ -878,9 +891,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   data:
-  - entity: {fileID: 8762292963563352769, guid: 1304bd39a19823540bfb2c3547b62c5b, type: 3}
-    minValue: 20
-    maxValue: 50
+  - Entity: {fileID: 8762292963563352769, guid: 1304bd39a19823540bfb2c3547b62c5b, type: 3}
+    Biome: {fileID: 2100000, guid: b63c97e8b34838f44930e4707b189a86, type: 2}
+    MinValue: 20
+    MaxValue: 40
+  - Entity: {fileID: 2710669020664328570, guid: c9d3c52ebfff3f645ac31c834f210f7b, type: 3}
+    Biome: {fileID: 2100000, guid: 31bafdacf27d3f94ab0cc151ba3fc648, type: 2}
+    MinValue: 20
+    MaxValue: 40
 --- !u!4 &2131115691
 Transform:
   m_ObjectHideFlags: 0

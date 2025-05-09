@@ -16,7 +16,8 @@ public class CharacterCollisionHandler : MonoBehaviour
     {
 
         var hitObject = hit.gameObject;
-        if (hitObject.name.IndexOf("enemy") != -1)
+        Renderer renderer = hitObject.GetComponent<Renderer>();
+        if (hitObject.tag == "Entity")
         {
             Destroy(hitObject);
             _health.ChangeHealth(-10);

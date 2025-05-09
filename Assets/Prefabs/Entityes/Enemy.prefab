@@ -11,10 +11,10 @@ GameObject:
   - component: {fileID: 7746867520656736584}
   - component: {fileID: 1492556032732772512}
   - component: {fileID: 3614783861370603017}
-  - component: {fileID: 4370737574926772134}
+  - component: {fileID: -5267434861071449581}
   m_Layer: 0
-  m_Name: enemy
-  m_TagString: Untagged
+  m_Name: Enemy
+  m_TagString: Entity
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -87,7 +87,7 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!65 &4370737574926772134
+--- !u!65 &-5267434861071449581
 BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
