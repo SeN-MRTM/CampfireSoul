@@ -1,12 +1,14 @@
+using System;
 using UnityEngine;
 
 public class CharacterCollisionHandler : MonoBehaviour
 {
     private CharacterController characterController;
-
+    [SerializeField] Health _health;
     void Start()
     {
         characterController = GetComponent<CharacterController>();
+        _health = GetComponent<Health>();
     }
 
 
@@ -17,7 +19,7 @@ public class CharacterCollisionHandler : MonoBehaviour
         if (hitObject.name.IndexOf("enemy") != -1)
         {
             Destroy(hitObject);
+            _health.ChangeHealth(-10);
         }
-
     }
 }
