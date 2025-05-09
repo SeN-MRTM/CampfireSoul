@@ -36,6 +36,14 @@ namespace Player
 
             Vector3 move = Quaternion.Euler(0, _playerCamera.transform.eulerAngles.y, 0) * new Vector3(_direction.x, 0, _direction.y);
             _velocity = new Vector3(move.x, _velocity.y, move.z);
+            if (Input.GetKeyDown(KeyCode.Q))
+            {
+                transform.rotation *= Quaternion.Euler(0f, -90, 0f);
+            }
+            if (Input.GetKeyDown(KeyCode.E))
+            {
+                transform.rotation *= Quaternion.Euler(0f, 90, 0f);
+            }
         }
     }
 }
