@@ -35,7 +35,7 @@ public class GenerationMap : MonoBehaviour
     //сама генерация 
     public void Generate(GameObject entity)
     {
-        Vector3 position = new Vector3(x + Random.Range(minRange, maxRange), transform.position.y, z + Random.Range(minRange, maxRange));
+        Vector3 position = new Vector3(x + Random.Range(minRange, maxRange), 2, z + Random.Range(minRange, maxRange));
         var cell = Instantiate(entity, position, Quaternion.identity);
     }
 }
