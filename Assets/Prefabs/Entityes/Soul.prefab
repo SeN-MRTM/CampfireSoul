@@ -122,3 +122,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _iconObject: {fileID: 21300000, guid: 41580a4e5823dac48b0c9552cc5ae10d, type: 3}
+  _ObjectToAttack: {fileID: 2710669020664328570}
+  _objectPositionToAttack: {x: 0, y: 0, z: 0}
+  _triggerObject: 0

@@ -53,6 +53,7 @@ public class GenerationMap : MonoBehaviour
         cell.AddComponent<EntityCollisionHandler>();
         cell.tag = "Entity";
         cell.AddComponent<Rigidbody>();
+        cell.GetComponent<TriggerMouseObject>()._ObjectToAttack = gameObject;
        // SphereCollider collider = cell.AddComponent<SphereCollider>();
        // collider.isTrigger = true;
        // collider.radius = POVEntities;
