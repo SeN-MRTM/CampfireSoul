@@ -8,6 +8,8 @@ TagManager:
   - Entity
   - HPObject
   - IconObject
+  - Item
+  - Inventory
   layers:
   - Default
   - TransparentFX

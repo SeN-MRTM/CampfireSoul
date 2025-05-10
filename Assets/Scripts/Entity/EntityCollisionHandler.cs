@@ -38,36 +38,44 @@ class EntityCollisionHandler : MonoBehaviour
             _rb.useGravity = false;
         else
             _rb.useGravity = true;
-        if (_tickRate == 0)
+        if (gameObject.tag != "Item")
         {
-            _tickRate = 600;
-            _waitPoint = waypoints[UnityEngine.Random.Range(0, waypoints.Length)];
-        }
-        Collider[] hitColliders = Physics.OverlapSphere(transform.position, 10f);
-        foreach (var hitCollider in hitColliders)
-        {
-            if (hitCollider.CompareTag("Player"))
+            if (_tickRate == 0)
             {
-                _waitPoint = new Vector3(hitCollider.transform.position.x,
-                    1,
-                    hitCollider.transform.position.z);
+                _tickRate = 600;
+                _waitPoint = waypoints[UnityEngine.Random.Range(0, waypoints.Length)];
             }
-
-        }
-        if (_isNear)
-        {
-            if (_tickFight == 0)
+            Collider[] hitColliders = Physics.OverlapSphere(transform.position, 10f);
+            foreach (var hitCollider in hitColliders)
             {
-                _health.ChangeHealth(-10);
-                _tickFight = 120;
+                if (hitCollider.CompareTag("Player"))
+                {
+                    _waitPoint = new Vector3(hitCollider.transform.position.x,
+                        1,
+                        hitCollider.transform.position.z);
+                }
+
+            }
+            if (_isNear)
+            {
+                if (_tickFight == 0)
+                {
+                    _health.ChangeHealth(-10);
+                    _tickFight = 120;
+                }
+                else
+                {
+                    _tickFight -= 1;
+                }
             }
             else
             {
-                _tickFight -= 1;
+                _tickFight = 120;
             }
+            transform.position = Vector3.MoveTowards(transform.position, _waitPoint, speedEntity * Time.deltaTime);
         }
         _tickRate -= 1;
-        transform.position = Vector3.MoveTowards(transform.position, _waitPoint, speedEntity * Time.deltaTime);
+        
     }
 
     private void onVisible()
@@ -85,7 +93,23 @@ class EntityCollisionHandler : MonoBehaviour
         if (collision.gameObject.CompareTag("Player"))
         {
             _isNear = true;
+            if(gameObject.tag == "Item")
+            {
+                InventoryController inventory = GameObject.Find("Sell1").GetComponent<InventoryController>();
+                InventoryItem inventoryItem = new InventoryItem();
+                Item item = new Item();
+                item.name = gameObject.name;
+                item.maxStack = 1;
+                item.description = "1";
+                item.id = 1;
+                item.sprite = Resources.Load<Sprite>("Sprites/Items/" + gameObject.name) ;
+                inventoryItem.Item = item;
+                inventoryItem.Count = 1;
+                inventory.TakeItem(inventoryItem, 0);
+                Destroy(gameObject);
+            }
         }
+
     }
 
     void OnCollisionExit(Collision collision)
